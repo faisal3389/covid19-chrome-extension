@@ -1,68 +1,81 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Covid19 Chrome Extension
 
-## Available Scripts
+A template browser extension. This designed to be a quick way to setup a browser extension, which can be used by loading locally or publishing the the Chrome Web Store or Firefox Add-ons store.
 
-In the project directory, you can run:
+<table><tr><td>
+  <img src="images/screenshot.png" width="400px" style="border: 1px solid black;">
+</td></tr></table>
 
-### `yarn start`
+### Save locally on your computer and run extension
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Open your terminal
+- cd to a directory where you want to save this
+- run: `git clone git@github.com:ryandav/template-browser-extension.git`
+- Then open the browser you wish to use it in and follow the below instructions
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### Chrome
 
-### `yarn test`
+- Visit `chrome://extensions/` in your Chrome browser
+- Click `Load Unpacked`
+- Select the folder you saved this in
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Firefox
 
-### `yarn build`
+- Visit `about:debugging`
+- Click on `Load Temporary Add-on`
+- Select the folder you saved this in
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Files to edit to create your extension
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The extension project structure looks like this:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+extension
+├── css
+│   ├── style.css
+│   └── themes
+│       ├── bootstrap
+│       │   └── bootstrap.css
+│       └── flatly
+│           └── bootstrap.css
+├── js
+│   ├── lib
+│   │   ├── bootstrap.bundle.js
+│   │   ├── clipboard-polyfill.js
+│   │   └── jquery.js
+│   └── popup.js
+├── manifest.json
+└── popup.html
+```
 
-### `yarn eject`
+- `popup.html` is the popup that appears when you click the extension icon in the browser's toolbar
+- `jspopup.js` is the JavaScript file that will run when the extension icon is clicked. This already has some functions to copy to the clipboard, to interact with the browser's tabs (depending on whether the browser is Chrome or not), and add event listeners.
+- `css/style.css` is the css file for your popup page
+- `manifest.json` update this with the configuration for your extension. If you want to add icons then you need to add them in an icons folder and then specify them here.
+- Add any other theme you want for Bootstrap easily by adding it to the `css/themes` folder and then link to that in `popup.html`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Publishing your extension
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [Publish in the Chrome Web Store - Google Chrome](https://developer.chrome.com/webstore/publish)
+- [Developer Hub :: Add-ons for Firefox](https://addons.mozilla.org/en-US/developers/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Libraries used
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- [lgarron/clipboard-polyfill: Sane copying on the web.](https://github.com/lgarron/clipboard-polyfill)
+- [Bootstrap · The most popular HTML, CSS, and JS library in the world.](https://getbootstrap.com/)
+- [jQuery](https://jquery.com/)
+- [Bootswatch.com theme Flatly](https://bootswatch.com/flatly/)
 
-## Learn More
+## Resources, guides and tutorials
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The following pages were helpful when creating a web extension.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [What are extensions? - Google Chrome](https://developer.chrome.com/extensions)
+- [Anatomy of an extension - Mozilla | MDN](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Anatomy_of_a_WebExtension)
+- [Using media queries - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
+- [manifest.json - Mozilla | MDN](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json)
+- [Manifest File Format - Google Chrome](https://developer.chrome.com/apps/manifest)
+- [Your first extension - Mozilla | MDN](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Your_first_WebExtension)
+- [Browser Extensions - Mozilla | MDN](https://developer.mozilla.org/en-US/Add-ons/WebExtensions)
+- [How to link to a specific paragraph in your Medium article (2018 Table of Contents method)](https://medium.freecodecamp.org/how-to-link-to-a-specific-paragraph-in-your-medium-article-2018-table-of-contents-method-e66595fea549) The post that I read by Quincy Larson on Medium that led me to try out the below Anchor Links Chrome Extension
+- [castroalves/anchor-links: Anchor Links is a free Chrome Extension to add anchor links to Medium and WordPress posts.](https://github.com/castroalves/anchor-links) This inspired me to write this Chrome extension as it is used for making it easier to add links to specific sections of your blog post on Medium
